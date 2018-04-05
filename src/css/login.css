@@ -1,0 +1,111 @@
+#login {
+    background: url(/css/images/login/log_in_wallpaper.jpg);
+    background-size: contain;
+    width: 800px;
+    height: 100%;
+    position: absolute;
+    left: calc(50% - 400px);
+}
+
+#login-header {
+    margin-top: 182px;
+    height: 20px;
+    text-align: center;
+    font-size: 18px;
+    text-shadow:
+        -1px -1px 1px #4e3117,  
+        1px -1px 1px #4e3117,
+        -1px 1px 1px #4e3117,
+        1px 1px 1px #4e3117;
+}
+
+#existing-character {
+    margin-top: 40px;
+}
+
+#existing-character-label {
+    text-align: center;
+    text-shadow:
+        -1px -1px 1px #4e3117,  
+        1px -1px 1px #4e3117,
+        -1px 1px 1px #4e3117,
+        1px 1px 1px #4e3117;
+}
+
+#existing-character-button {
+    margin: 20px auto;
+}
+
+#login-or {
+    text-align: center;
+    text-shadow:
+        -1px -1px 1px #4e3117,  
+        1px -1px 1px #4e3117,
+        -1px 1px 1px #4e3117,
+        1px 1px 1px #4e3117;
+}
+
+#choose-name {
+    position: absolute;
+    width: 300px;
+    height: 150px;
+    left: calc(50% - 180px);
+    z-index: 1000;
+    top: 200px;
+    border-radius: 10px;
+    padding: 30px;
+    background: url(/css/images/menu/tt_bg.png);
+    background-size: cover;
+}
+
+.character-name-input {
+    width: 205px;
+    height: 33px;
+    text-align: center;
+    background: url(/css/images/menu/form.png);
+    background-size: cover;
+    border: none;
+    margin: auto;
+    display: block;
+    margin-top: 5px;
+}
+
+.character-name-input:focus {
+    outline: none;
+}
+
+.join-button {
+    display: block;
+    text-align: center;
+    border: none;
+    height: 31px;
+    width: 100px;
+    border-radius: 5px;
+    background: url(/css/images/menu/button_normal.png);
+    background-size: cover;
+}
+
+.join-button:hover {
+    background: url(/css/images/menu/button_hover.png);
+    background-size: cover;
+    cursor: pointer;
+}
+
+#new-character-button {
+    font-size: 17px;
+    height: 45px;
+    width: 160px;
+    display: block;
+    text-align: center;
+    border: none;
+    margin: 90px auto 40px auto;
+    background: url(/css/images/menu/bb_normal.png);
+    background-size: cover;
+}
+
+#new-character-button:hover {
+    cursor: pointer;
+    width: 164px;
+    background: url(/css/images/menu/bb_hover.png);
+    background-size: cover;
+}

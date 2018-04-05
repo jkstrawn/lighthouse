@@ -1,0 +1,22 @@
+{
+    "compilerOptions": {
+        "module": "commonjs",
+        "target": "es6",
+        "noImplicitAny": false,
+        "sourceMap": true,
+        "rootDir": "src",
+        "typeRoots": ["./node_modules/@types"],
+        "lib":["es2016", "dom"],
+        "allowJs": true,
+        "jsx": "react"
+    },
+    "exclude": [
+        "node_modules",
+        "typings",
+        "src/public",
+        "webpack.config.js"
+    ],
+    "filesGlob": [
+        "./**/*.ts"
+    ]
+}

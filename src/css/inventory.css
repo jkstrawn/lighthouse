@@ -1,0 +1,142 @@
+#inventory {
+    width: 305px;
+    height: 220px;
+    border-top-left-radius: 3px;
+    padding: 32px 30px 20px 33px;
+    background: url(/css/images/inventory/inventory_texture.png) no-repeat;
+    position: absolute;
+    right: 10px;
+    bottom: 5px;
+}
+
+#inventory-close {
+    top: 14px;
+    right: 15px;
+}
+
+#inventory-money {
+    float: right;
+    width: 177px;
+    height: 36px;
+    background: url(/css/images/inventory/money_label.png) no-repeat;
+    margin-right: 29px;
+    margin-top: 3px;
+}
+
+#inventory-money-copper-label {
+    width: 16px;
+    height: 12px;
+    background: url(/css/images/inventory/bronze_coin.png) no-repeat;
+    float: right;
+    margin-top: 14px;
+    margin-right: 18px;
+}
+
+#inventory-money-copper-amount {
+    float: right;
+    color: #f1a878;
+    margin-top: 10px;
+    margin-right: 2px;
+    text-shadow:
+        -1px -1px 1px #4e3117,  
+        1px -1px 1px #4e3117,
+        -1px 1px 1px #4e3117,
+        1px 1px 1px #4e3117;
+}
+    
+#inventory-slots {
+    width: 270px;
+    height: 179px;
+    border: 1px solid #281f18;
+    background-image: url(/css/images/inventory/blending_separator.png);
+    padding: 1px;
+}
+
+.item-slot {
+    width: 40px;
+    height: 40px;
+    float: left;
+    border-radius: 5px;
+    /*background: rgba(0, 0, 0, .2);*/
+    background-image: url(/css/images/inventory/item_slot_bg.png);
+    background-size: 900%;
+    margin: 2px 3px 3px 2px;
+}
+
+.item-slot-outline {
+    background-image: url(/css/images/inventory/item_slot_frame.png);
+    width: 44px;
+    height: 44px;
+    margin-top: -2px;
+    margin-left: -2px
+}
+
+.item-slot-outline:hover {
+    background-image: url(/css/images/inventory/item_slot_frame_hover.png);
+}
+
+#item-tooltip {
+    width: 209px;
+    pointer-events: none;
+    padding-bottom: 5px;
+}
+
+#item-tooltip-name {
+    height: 22px;
+    margin-bottom: 5px;
+}
+
+.item-tooltip-field {
+    width: 100%;
+    height: 22px;
+    margin-bottom: 5px;
+}
+
+.item-tooltip-colon {
+    float:left;
+}
+
+#item-tooltip-type-label {
+    float:left;
+}
+
+#item-tooltip-type-value {
+    float:left;
+    padding-left: 5px;
+}
+
+#item-tooltip-stat-label {
+    float:left;
+}
+
+#item-tooltip-stat-value {
+    float:left;
+    padding-left: 5px;
+}
+
+#item-tooltip-sell-price-value {
+    float: left;
+    padding-left: 5px;
+    color: #d18867;
+}
+
+#item-tooltip-sell-price-icon {
+    width: 16px;
+    height: 12px;
+    background: url(/css/images/inventory/bronze_coin.png) no-repeat;
+    float: left;
+    margin-top: 4px;
+}
+
+#loot-bag {
+    width: 135px;
+    height: 90px;
+    bottom: 150px;
+    left: calc(50% - 70px);
+    z-index: 100;
+}
+
+#dragging-slot {
+    position: fixed;
+    z-index: 10;
+}

@@ -1,0 +1,232 @@
+#character {
+    width: 371px;
+    height: 505px;
+    background: url(/css/images/equipment/char_sheet_texture.png) no-repeat;
+    position: absolute;
+    top: 100px;
+    left: calc(50% - 185px);
+}
+
+#character-header {
+    width: 313px;
+    height: 72px;
+    background: url(/css/images/equipment/char_sheet_heading_texture.png) no-repeat;
+    margin-left: 29px;
+    margin-top: 34px;
+    text-align: center;
+    padding-top: 15px;
+    color: #cbc5b9;
+}
+
+#character-divider {
+    width: 319px;
+    height: 20px;
+    background: url(/css/images/equipment/char_sheet_front_border.png) no-repeat;
+    position: absolute;
+    top: 112px;
+    left: 26px;
+    z-index: 1
+}
+
+#character-window-equipment {
+    width: 313px;
+    height: 365px;
+    background: url(/css/images/equipment/equipment_bg_texture.png) no-repeat;
+    margin-left: 29px;
+    margin-top: 3px;
+    position: relative;
+}
+
+#slots-left {
+    width: 44px;
+    height: 100%;
+    position: absolute;
+    left: 16px;
+    top: 18px;
+}
+
+.character-slot {
+    margin-top: 8px !important;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+#slots-right {
+    width: 44px;
+    height: 100%;
+    position: absolute;
+    right: 16px;
+    top: 18px;
+}
+
+#equipment-damage-protection {
+    position: absolute;
+    bottom: 80px;
+    height: 30px;
+    width: 160px;
+    left: calc(50% - 80px);
+    text-align: center;
+}
+
+#equipment-damage {
+    float: left;
+    width: 70px;
+    height: 40px;
+
+}
+
+#equipment-protection {
+    float: right;
+    width: 70px;
+    height: 40px;
+
+}
+
+#weapons {
+    width: 204px;
+    height: 63px;
+    background: url(/css/images/equipment/equipment_slot_bottom_bg.png) no-repeat;
+    position: absolute;
+    left: calc(50% - 102px);
+    bottom: 5px;
+}
+
+#weapons .character-slot {   
+    margin-top: 11px !important;
+    margin-left: 13px;
+}
+
+#weapons > :first-child{
+    margin-left: 27px;
+}
+
+#character-close {
+    top: 15px;
+    right: 14px;
+}
+
+#character-tabs {
+    position: absolute;
+    bottom: -18px;
+    left: 33px;
+    height: 32px;
+    width: 400px;
+}
+
+.character-tab {
+    color: #a89984;
+    font-size: 14px;
+    float: left;
+    width: 87px;
+    height: 25px;
+    background: url(/css/images/menu/tab_normal.png) no-repeat;
+    text-align: center;
+    padding-top: 7px;
+    margin-right: 1px;
+}
+
+.character-tab:hover {
+    color: #e3d7c9;
+    cursor: pointer;
+}
+
+.character-tab.selected {
+    color: #e3d7c9;
+    background: url(/css/images/menu/tab_selected.png) no-repeat;
+}
+
+
+#character-window-stats {
+    width: 313px;
+    height: 365px;
+    background: url(/css/images/character/shared_bg_texture.png) no-repeat;
+    margin-left: 29px;
+    margin-top: 3px;
+    position: relative;
+    padding: 20px 10px 0 10px;
+}
+
+#character-level {
+    margin-top: 16px;
+}
+
+#character-stats-header {
+    text-align: center;
+    width: 90%;
+}
+
+#character-stats-health-mana {
+    height: 30px;
+    width: 250px;
+    text-align: center;
+    margin-top: 30px;
+}
+
+#character-stats-health {
+    float: left;
+    width: 70px;
+    height: 40px;
+    margin-left: 50px;
+}
+
+#character-stats-mana {
+    float: left;
+    width: 70px;
+    height: 40px;
+    margin-left: 30px;
+}
+
+#character-stats-attributes {
+    margin-top: 20px;
+    margin-left: 45px;
+}
+
+.attribute {
+    width: 155px;   
+    height: 20px;
+    background: url(/css/images/character/stats_bg.png) no-repeat;
+    margin-bottom: 1px;
+    padding: 5px 10px;
+    font-size: 14px;
+}
+
+.attribute-value {
+    float: right;
+}
+
+#character-stats-attributes-pluses {
+    width: 30px;
+    position: absolute;
+    top: 119px;
+    right: 70px;
+}
+
+.attribute-plus {
+    width: 28px;   
+    height: 27px;
+    background: url(/css/images/character/zoom_normal.png) no-repeat;
+    margin-bottom: 4px;
+}
+
+.attribute-plus:hover {
+    background: url(/css/images/character/zoom_hover.png) no-repeat;    
+}
+
+.attribute-plus:active {
+    background: url(/css/images/character/zoom_active.png) no-repeat;    
+}
+
+.attribute-minus {
+    width: 28px;   
+    height: 27px;
+    background: url(/css/images/character/zoom_out_normal.png) no-repeat;
+    margin-bottom: 4px;
+}
+
+.attribute-minus:hover {
+    background: url(/css/images/character/zoom_out_hover.png) no-repeat;    
+}
+
+.attribute-minus:active {
+    background: url(/css/images/character/zoom_out_active.png) no-repeat;    
+}

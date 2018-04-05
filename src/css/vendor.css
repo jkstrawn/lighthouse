@@ -1,0 +1,111 @@
+#npc-vendor {
+    width: 305px;
+    height: 453px;
+    background: url(/css/images/equipment/char_sheet_texture.png) no-repeat;
+    border-top-left-radius: 3px;
+    padding: 32px 33px 20px 33px;
+    position: absolute;
+    left: calc(50% - 152px);
+    top: calc(50% - 295px);
+}
+
+#vendor-close {
+    top: 14px;
+    right: 14px;
+}
+
+#npc-vendor-name{
+    text-align: center;
+    margin: 5px 0 0 5px;
+}
+
+#npc-vendor-items {
+    margin-top: 10px;
+    width: 95%;
+    height: 320px;
+    border: 1px solid #7c5c3a;
+    border-radius: 2px;
+    padding: 5px;
+}
+
+.npc-vendor-item {
+    width: 97%;
+    height: 44px;
+    border-radius: 3px;
+    border: 1px solid black;
+    padding: 4px;
+    background: rgba(0,0,0,.5);
+    margin-bottom: 4px;
+}
+
+.npc-vendor-item:hover {
+    border: 1px solid #7c5c3a;
+}
+
+.npc-vendor-item.selected {
+    border: 1px solid #d09844 !important;
+}
+
+.npc-vendor-item-name {
+    margin-left: 10px;
+    padding-top: 10px;
+    float: left;
+}
+
+.npc-vendor-item-price {
+    float: right;
+    padding-top: 5px;
+    padding-right: 10px;
+    color: #d18867;
+}
+
+.npc-vendor-item-price-icon {
+    width: 16px;
+    height: 12px;
+    background: url(/css/images/inventory/bronze_coin.png) no-repeat;
+    float: right;
+    margin-top: 4px;
+}
+
+#npc-vendor-cost{
+    margin-top: 5px;
+    float: right;
+    width: 100px;
+    padding: 3px;
+}
+
+#npc-vendor-cost-text {
+    margin-top: 4px;
+    float: left;
+}
+
+#npc-vendor-cost-amount {
+    float: right;
+    background: rgba(0, 0, 0, .5);
+    border: 1px solid #7c5c3a;
+    border-radius: 2px;
+    width: 50px;
+    height: 19px;
+    padding: 3px;
+    text-align: center;
+}
+
+#npc-vendor-buy-button {
+    position: absolute;
+    bottom: 23px;
+    left: calc(50% - 52px);
+    text-align: center;
+    padding: 11px 8px;
+    height: 17px;
+    width: 109px;
+    border-radius: 5px;
+    background: url(/css/images/menu/button_normal.png);
+    background-size: cover;
+}
+
+#npc-vendor-buy-button:hover {
+    background: url(/css/images/menu/button_hover.png);
+    background-size: cover;
+    padding: 12px 9px;
+    cursor: pointer;
+}

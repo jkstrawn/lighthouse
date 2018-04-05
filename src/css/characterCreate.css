@@ -1,0 +1,136 @@
+#character-create {
+    width: 800px;
+    height: 100%;
+    position: absolute;
+    left: calc(50% - 400px);
+}
+
+.character-create-banner {
+    width: 359px;
+    height: 622px;
+    margin-top: 30px;
+    background: url(/css/images/login/banner.png);
+}
+
+#banner-left {
+    float: left;
+}
+
+#banner-left-header {
+    margin-top: 50px;
+    text-align: center;
+}
+
+#character-create-classes {
+    margin: 40px 0 0 70px;
+}
+
+.character-create-class-option {
+    float: left;
+    margin-right: 20px;
+    width: 100px;
+    height: 100px;
+    text-align: center;
+}
+
+.character-create-class-box {
+    width: 86px;
+    height: 86px;
+    margin: 5px auto 0 auto;
+    border-radius: 5px;
+}
+
+
+/* Knight */
+#class-box-1 {
+    background: url(/css/images/login/faction_1_bg_normal.png);
+}
+
+#class-box-inner-1 {
+    width: 100%;
+    height: 100%;
+    background: url(/css/images/login/faction_1.png);
+}
+
+#class-box-1.selected {
+    background: url(/css/images/login/faction_1_bg_selected.png);
+    border-bottom: 3px solid rgba(0,0,0,0.4);
+}
+
+#class-box-1:hover {
+    background: url(/css/images/login/faction_1_bg_selected.png);
+}
+
+/* Mystic */
+#class-box-2 {
+    background: url(/css/images/login/faction_2_bg_normal.png);
+}
+
+#class-box-inner-2 {
+    width: 100%;
+    height: 100%;
+    background: url(/css/images/login/faction_2.png);
+}
+
+#class-box-2.selected {
+    background: url(/css/images/login/faction_2_bg_selected.png);
+    border-bottom: 3px solid rgba(0,0,0,0.4);
+}
+
+#class-box-2:hover {
+    background: url(/css/images/login/faction_2_bg_selected.png);
+}
+
+#banner-right {
+    float: right;
+}
+
+#banner-right-header {
+    margin-top: 50px;
+    text-align: center;
+}
+
+#character-create-name {
+    position: absolute;
+    bottom: 10px;
+    height: 136px;
+    left: calc(50% - 150px);
+    width: 300px;
+    text-align: center;
+}
+
+#character-create-points-left {
+    margin: 40px 0 0 70px;
+}
+
+#character-create-attributes {
+    margin: 7px 0 0 60px;
+    float: left;
+    width: 180px;
+}
+
+#character-create-attributes-pluses {
+    width: 30px;
+    float: left;
+    margin-top: 6px;
+}
+
+#character-create-attributes-minuses {
+    width: 30px;
+    float: left;
+    margin-top: 6px;
+}
+
+#character-create-buttons {
+    width: 210px;
+    margin: 20px auto;
+    height: 20px; 
+}
+
+#character-create-button {
+    float: left;
+}
+
+#character-create-back {
+    float: right;
+}

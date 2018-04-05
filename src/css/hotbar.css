@@ -1,0 +1,155 @@
+#hotbar {
+    position: absolute;
+    width: 408px;
+    height: 100px;
+    left: calc(50% - 204px);
+    bottom: 0;
+}
+
+#hotbar-menu {
+    width: 308px;
+    height: 54px;
+    padding: 32px 50px 0 50px;
+    position: absolute;
+    bottom: -2px;
+    background: url(/css/images/menu/big_frame_1.png) no-repeat;
+    border-radius: 5px;
+}
+
+.menu-item {
+    float: right;
+    width: 42px;
+    height: 44px;
+    background-repeat: no-repeat;
+    margin-left: 10px;
+}
+
+.menu-item:hover {
+    cursor: pointer;
+}
+
+#menu-character {
+    background-image: url(/css/images/menu/char_normal.png);
+}
+
+#menu-inventory {
+    background-image: url(/css/images/menu/inventory_normal.png);
+}
+
+#menu-abilities {
+    background-image: url(/css/images/menu/ability_normal.png);
+    float: left;
+}
+
+#menu-character:hover {
+    background-image: url(/css/images/menu/char_hover.png);
+}
+
+#menu-inventory:hover {
+    background-image: url(/css/images/menu/inventory_hover.png);
+}
+
+#menu-abilities:hover {
+    background-image: url(/css/images/menu/ability_hover.png);
+}
+
+#xp-bar {
+    height: 6px;
+    width: 316px;
+    bottom: 0;
+    position: absolute;
+    left: calc(50% - 159px);
+    z-index: 2;
+    border: 1px solid gray;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+#xp-bar-filling {
+    background: url(/css/images/menu/yellow_fill.png);
+    width: 0%;
+    height: 100%;
+}
+
+#health-orb {
+    border-radius: 50%;
+    height: 80px;
+    width: 80px;
+    overflow: hidden;
+    position: absolute;
+    bottom: 25px;
+    left: calc(50% - 40px);
+    background: black;
+    z-index: 3;
+}
+
+#health-orb-foreground {
+    overflow: hidden;
+    border: 1px solid #393939;
+    border-radius: 50%;
+    width: calc(100% - 2px);
+    height: calc(100% - 2px);
+    box-shadow: inset -1px -1px 12px 0px rgba(19, 19, 19, 0.71);
+    position: absolute;
+    z-index: 10;
+}
+
+#health-orb-foreground:before {
+    content: "";
+    position: absolute;
+    top: 1%;
+    left: 5%;
+    width: 90%;
+    height: 90%;
+    border-radius: 50%;
+    background: radial-gradient(circle at 50% 0px, #ffb0b0, rgba(255, 255, 255, 0) 58%);
+    filter: blur(5px);
+    z-index: 5;
+}
+
+#health-orb-filling {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    bottom: 0;
+    z-index: 2;
+    overflow: hidden;
+}
+
+#health-orb-filling-background {
+    position: absolute;
+    bottom: 0;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 50% 120%, #ff0000, #d20000 10%, #870101 80%, #062745 100%);
+}
+
+#mana-bar {
+    position: absolute;
+    width: 94px;
+    height: 44px;
+    bottom: 68px;
+    left: calc(50% - 47px);
+    z-index: 2;
+    overflow: hidden;
+}
+
+#mana-bar-filling {
+    width: 94px;
+    height: 94px;
+    border-radius: 50%;
+    background: #3571ce;
+    background-image: linear-gradient(to right, transparent 50%, #222 0);
+}
+
+#menu-character-label {
+    position: absolute;
+    bottom: 10px;
+    width: 150px;
+    height: 15px;
+    z-index: 2;
+    left: calc(50% - 75px);
+    text-align: center;
+    font-size: 14px;
+}
