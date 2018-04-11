@@ -1,49 +1,50 @@
 Project Lighthouse
 =======
 
-A space typing game with some decisions and advancement
+A space typing game with some basic decisions and advancement
 
 
 ## Install Process
-=======
-- npm install
-
-- npm start
-
-- host `/public` folder through any http server
+- `npm install`
+- `npm start`
+- host `/src` folder through any http server
 
 
 ## MVP
-fire weapon at enemy
-active shield on right or left
-fire cannon at missile
+Actions:
++ fire weapon at enemy
++ active shield on right or left
++ fire cannon at missile
 
-typo on shield = cancel shield for some time
-type on attack = overheat gun and take damage
+On Typo:
++ typo on shield = cancel shield for some time
++ typo on attack = overheat gun and take damage
 
 
 ## Bonus
 spell effects
+
 powerups
 
 choose skills / strengths
 
 money from completing level:
-    number of typos
-    damage taken
-    speed of completion
++ number of typos
++ damage taken
++ speed of completion
 
 store
-    powerup
-    heal ship
-    increase max health
-    increase shield amount
-    stronger shield blocking
-    weapon damage
++ powerup
++ (unlock powerups?)
++ heal ship
++ increase max health
++ increase shield amount
++ stronger shield blocking
++ weapon damage
 
-store or talent tree
+Either store or talent tree
 
-typing:
-short words
-long words
-full sentences
+Typing:
++ short words
++ long words
++ full sentences
