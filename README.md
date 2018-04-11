@@ -1,46 +1,49 @@
-Wayfare
+Project Lighthouse
 =======
 
-The current game we&#39;re working on, codename: wayfare
+A space typing game with some decisions and advancement
 
 
-Install process
+## Install Process
 =======
 - npm install
 
 - npm start
 
-- npm run watchTsc
-
-- Install MongoDB and run it: https://docs.mongodb.com/manual/tutorial/install-mongodb-on-windows/
-
-- open VS Code and launch the app
+- host `/public` folder through any http server
 
 
 ## MVP
-- ~~create new player~~
-- ~~unarmed attack against bugs~~
-- die from bugs and respawn player
-- get loot from bugs
-- ~~access inventory and move items around~~
-- ~~equip items~~
-- ~~leather armor~~
-- axe, sword
-- go to town and sell loot
-- get XP and level up
-- earn new spell - magic missile
-- set hotkeys
-- fight trolls
+fire weapon at enemy
+active shield on right or left
+fire cannon at missile
+
+typo on shield = cancel shield for some time
+type on attack = overheat gun and take damage
 
 
-## TODO
-- player take damage / injury animation
-- run animation
-- xp gains
-- level system
-- spells
-- model weapons
-- animate weapons
-- Linting, tests
-- Webpack prod config
-- Paralell Tsc and webpack
+## Bonus
+spell effects
+powerups
+
+choose skills / strengths
+
+money from completing level:
+    number of typos
+    damage taken
+    speed of completion
+
+store
+    powerup
+    heal ship
+    increase max health
+    increase shield amount
+    stronger shield blocking
+    weapon damage
+
+store or talent tree
+
+typing:
+short words
+long words
+full sentences
