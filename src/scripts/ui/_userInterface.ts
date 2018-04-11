@@ -1,5 +1,6 @@
-import { Login } from "../../react/login";
+// import { Login } from "../../react/login";
 import { Home } from "../../react/home";
+import WordObject from "./wordObject";
 
 interface ErrorHandler {
     type: number;
@@ -11,7 +12,7 @@ export default class Ui {
     static mouseMoveHandlers: Array<Function> = [];
 
     static Home: Home;
-    static Login: Login;
+    // static Login: Login;
 
     static initiate() {
         // let inventory = data.inventory.filter(x => x.slotId < 1000);
@@ -22,8 +23,12 @@ export default class Ui {
         // this.Inventory.init(inventory);
         // this.Character.initEquipment(equipment);
         
-        this.Home.hideMenu();
-        this.Home.showInterface();
+        // this.Home.hideMenu();
+        // this.Home.showInterface();
+    }
+
+    static updateWordState(words: Array<WordObject>) {
+        this.Home.setWords(words);
     }
 
     static mouseMove(e) {

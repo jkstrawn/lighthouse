@@ -23,7 +23,12 @@ var config = {
 		new webpack.ProvidePlugin({
 			THREE: "three",
 			$: "jquery",
-		})
+		}),
+		new webpack.DefinePlugin({
+			"process.env": {
+			  NODE_ENV: JSON.stringify("development")
+			}
+		  })
 	],
 	resolve: {
 		extensions: ['.ts', '.tsx', '.js', '.jsx'],

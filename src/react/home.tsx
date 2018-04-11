@@ -4,136 +4,72 @@ import * as $ from 'jquery';
 import * as THREE from "three";
 import Ui from "../scripts/ui/_userInterface";
 import Input from "../scripts/ui/_input";
-import { Login } from "./login";
-import { SyntheticEvent } from "react";
+// import { Login } from "./login";
 import "../css/site.css";
 import "../css/login.css";
+import { WordComponent } from './wordComponent';
+import WordObject from '../scripts/ui/wordObject';
 
 window["adminMap"] = null;
 window["game"] = game;
 
-function getIt(gearDamage, strength, level) {
-
-    let baseDamage = (level + 2) / 3;
-    let strengthFactor = (strength + 4) / 5;
-
-    let weaponDamage = gearDamage * strengthFactor;
-    let handDamage = baseDamage * strengthFactor;
-
-    return Math.max(1, handDamage + weaponDamage);
-}
-
-function test() {
-    console.log("level 1 unnarmed (1 str)", getIt(0, 1, 1));
-    console.log("level 1 with club (1 str)", getIt(1, 1, 1));
-    console.log("level 1 unnarmed (6 str)", getIt(0, 6, 1));
-    console.log("level 1 with club (6 str)", getIt(1, 6, 1));
-
-    console.log("level 6 unnarmed (1 str)", getIt(0, 1, 6));
-
-    console.log("level 6 unnarmed (6 str)", getIt(0, 6, 6));
-    console.log("level 6 with club (6 str)", getIt(1, 6, 6));
-    console.log("level 6 with sword (6 str)", getIt(2, 6, 6));
-    console.log("level 6 with sword (13 str)", getIt(2, 13, 6));
-}
-
-
-window["test"] = test;
-
 interface IHomeState {
-    menuHidden?: boolean;
-    interfaceHidden?: boolean;
+    words: Array<WordObject>;
 }
 
 export class Home extends React.Component<{}, IHomeState> {
-    constructor() {
-        super(null);
+    constructor(props) {
+        super(props);
 
         Ui.Home = this;
 
-        this.state = { menuHidden: false, interfaceHidden: true };
+        this.state = { words: [] };
     }
 
     public render() {
-        return <div
-            onMouseMove={(e) => this.mouseMove(e)}>
+        return <div>
 
             <div id="canvasContainer"
-                onClick={(e) => this.click(e)}
-                onContextMenu={(e) => this.canvasRightClick(e)}
-                onMouseDown={(e) => this.mouseDown(e)}
-                onMouseUp={(e) => this.mouseUp(e)}>
+                onClick={(e) => this.click(e)}>
             </div>
 
-            <div id="interface" className={this.state.interfaceHidden ? "hidden" : ""}>
+            {this.state.words.map(x =>
+                <WordComponent key={x.id} wordObject={x} />
+            )}
+
+            {/* <div id="interface" className={this.state.interfaceHidden ? "hidden" : ""}>
 
             </div>
 
             <div id="menu" className={this.state.menuHidden ? "hidden" : ""}>
                 <Login />
-            </div>
+            </div> */}
         </div>;
     }
 
     componentWillMount() {
-        document.addEventListener("keydown", this.keyDown, false);
-        document.addEventListener("keyup", this.keyUp, false);
-        document.addEventListener("contextmenu", this.rightClick, false);
+        document.addEventListener("keypress", this.keyPress, false);
     }
 
-    mouseMove(e: React.MouseEvent<HTMLDivElement>) {
-        Input.mouseMove(e);
-
-        Ui.mouseMove(e);
+    setWords(words: Array<WordObject>) {
+        this.setState({ words });
     }
 
     click(e: React.MouseEvent<HTMLDivElement>) {
         Input.onLeftClick(e);
     }
 
-    canvasRightClick(e: React.MouseEvent<HTMLDivElement>) {
-        e.preventDefault();
+    keyPress(e: KeyboardEvent) {
+        Input.onKeyPress(e.key);
     }
 
-    mouseDown(e: React.MouseEvent<HTMLDivElement>) {
-        if (e.button == 2) {
-            Input.onRightMouseDown(e);
-        }
-    }
+    // hideMenu() {
+    //     this.setState({ menuHidden: true });
+    // }
 
-    mouseUp(e: React.MouseEvent<HTMLDivElement>) {
-        if (e.button == 2) {
-            Input.onRightMouseUp(e);
-        }
-    }
-
-    rightClick(e) {
-        e.preventDefault();
-    }
-
-    keyDown(e: KeyboardEvent) {
-        if (e.target["type"] == "text") {
-            return;
-        }
-
-        Input.onKeyDown(e.keyCode);
-    }
-
-    keyUp(e: KeyboardEvent) {
-        if (e.target["type"] == "text") {
-            return;
-        }
-
-        Input.onKeyUp(e.keyCode);
-    }
-
-    hideMenu() {
-        this.setState({ menuHidden: true });
-    }
-
-    showInterface() {
-        this.setState({ interfaceHidden: false });
-    }
+    // showInterface() {
+    //     this.setState({ interfaceHidden: false });
+    // }
 
     componentDidMount() {
 

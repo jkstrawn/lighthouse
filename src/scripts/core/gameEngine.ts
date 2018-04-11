@@ -5,6 +5,7 @@ import renderer from '../graphics/renderer';
 import audio from "../audio/audioPlayer";
 import Ui from "../ui/_userInterface";
 import Input from "../ui/_input";
+import WordObject from '../ui/wordObject';
 
 class GameEngine {
 
@@ -12,35 +13,52 @@ class GameEngine {
 	entities: Array<Entity> = [];
 	username: string;
 	player: Entity = null;
+	allWords: Array<WordObject> = [];
+	selectedWord: WordObject = null;
 
 	constructor() {
+		this.allWords = [
+			new WordObject(1, "sentence", 200, 200),
+			new WordObject(2, "waterfall", 200, 300)
+		];		
 	}
 
 	init() {
 		renderer.init();
 
+		Ui.updateWordState(this.allWords);
+
 		window["animate"]();
 	}
 
-	// initiateThisPlayer(entity: EntityDataModel) {
-	// 	// called by network when the user logs in with a character
+	onKeyPress(key: string) {
+		if (!this.selectedWord) {
+			this.selectWord(key);
+		}
 
-	// 	let model = renderer.createAnimatedModel("man");
-	// 	let position = new THREE.Vector3(entity.x, 0, entity.z);
+		if (this.selectedWord) {
+			this.selectedWord.onKeyPress(key);
+		}
 
-	// 	this.player = new Entity(1, new THREE.Mesh(), new THREE.Vector3(), 4);
-		
-	// 	console.log("make the player with id " + this.player.id);
-	// 	console.log(entity);
-		
-	// 	window["a"] = model;
-		
-	// 	this.username = entity.username;
-	// 	// this.entities.push(this.player);
-		
-	// 	Ui.initiate(entity);
-	// 	// renderer.focusCameraOnPosition(this.player.getX(), this.player.getY());
-	// }
+		Ui.updateWordState(this.allWords);
+	}
+
+	selectWord(key: string) {
+		for (var word of this.allWords) {
+			let letter = word.getNextLetter();
+			if (letter == key) {
+				this.selectedWord = word;
+			}
+		}
+	}
+
+	getWords(): Array<WordObject> {
+		return this.allWords;
+	}
+
+	onWordCompleted(word: WordObject) {
+		this.selectedWord = null;
+	}
 
 	deleteEntity(id: number, wasKilled: boolean) {
 		let entity = game.entities.filter(x => x.id == id)[0];
@@ -87,13 +105,6 @@ class GameEngine {
 		this.handleInput();
 
 		renderer.update(dt);
-
-		if (this.player) {
-			// let playerState = this.player.getState();
-			// if (playerState) {
-			// 	Network.sendPlayerState(playerState);
-			// }
-		}
 
 		if (this.debug) {
 			for (let i = this.entities.length - 1; i >= 0; i--) {

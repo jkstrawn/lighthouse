@@ -19,6 +19,10 @@ export default class Input {
 
     static hotkeys = new Hotkeys();
 
+    static onKeyPress(key: string) {
+        game.onKeyPress(key);
+    }
+
     static onKeyDown(keyCode: number) {
         if (this.keyDownList.indexOf(keyCode) == -1) {
             this.keyDownList.push(keyCode);

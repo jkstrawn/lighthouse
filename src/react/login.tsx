@@ -14,7 +14,7 @@ export class Login extends React.Component<{}, ILoginState> {
     constructor() {
         super(null);
 
-        Ui.Login = this;
+        // Ui.Login = this;
 
         this.state = { username: "" };
     }
