@@ -4,15 +4,7 @@ import * as $ from 'jquery';
 import * as THREE from "three";
 import Ui from "../scripts/ui/_userInterface";
 import Input from "../scripts/ui/_input";
-import { Chat } from "./chat";
-import { Hotbar } from "./hotbar";
-import { Character } from "./character";
-import { LootBag } from "./lootBag";
-import { ItemToolTip } from "./itemToolTip";
-import { NpcVendor } from "./npcVendor";
 import { Login } from "./login";
-import { CharacterCreate } from "./characterCreate";
-import { InventoryComponent } from "./inventoryComponent";
 import { SyntheticEvent } from "react";
 import "../css/site.css";
 import "../css/login.css";
@@ -55,7 +47,7 @@ interface IHomeState {
 
 export class Home extends React.Component<{}, IHomeState> {
     constructor() {
-        super();
+        super(null);
 
         Ui.Home = this;
 
@@ -74,28 +66,12 @@ export class Home extends React.Component<{}, IHomeState> {
             </div>
 
             <div id="interface" className={this.state.interfaceHidden ? "hidden" : ""}>
-                <Chat />
-                <Hotbar />
-                <InventoryComponent />
-                <NpcVendor />
-                <ItemToolTip />
-                <LootBag />
-                <Character />
+
             </div>
 
             <div id="menu" className={this.state.menuHidden ? "hidden" : ""}>
                 <Login />
-                <CharacterCreate />
             </div>
-
-            <div className="context-menu">
-                <ul>
-                    <li data-command="spawn|bugbear">Spawn Bugbear</li>
-                    <li data-command="spawn|ant">Spawn Ant</li>
-                    <li data-command="spawn|grub">Spawn Grub</li>
-                </ul>
-            </div>
-
         </div>;
     }
 

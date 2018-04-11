@@ -26,10 +26,26 @@ var config = {
 		})
 	],
 	resolve: {
-		extensions: ['.ts', '.tsx', '.js', 'jsx'],
+		extensions: ['.ts', '.tsx', '.js', '.jsx'],
 		unsafeCache: true
 	}
 };
+
+var clientConfig = Object.assign({}, config, {
+	name: "game",
+	target: 'node', // in order to ignore built-in modules like path, fs, etc. 
+    // externals: [nodeExternals()],
+	context: path.resolve(__dirname, './src/react'),
+	//	context: path.resolve(__dirname, './src/public/scripts'),
+	output: {
+		path: path.resolve(__dirname, './src'),
+		filename: 'output.js'
+	},
+	entry: [
+		'./boot.tsx'
+		//		'./main.ts'
+	]
+});
 
 // Return Array of Configurations
 module.exports = [

@@ -1,7 +1,6 @@
 import renderer from '../graphics/renderer';
 import audio from '../audio/audioPlayer';
 import * as THREE from "three";
-import EntityDataModel from "../../../shared/network/fromServer/entityDataModel";
 
 class DebugInfo {
 	hitBox: THREE.Line;
@@ -62,19 +61,6 @@ export default class Entity {
 		let angle = new THREE.Vector2(diff.x, -diff.z).angle();
 
 		this.rotateModel(angle);
-	}
-
-	useState(state: EntityDataModel) {
-		this.timeSinceUpdate = 0;
-
-		let x = state.x || this.model.position.x;
-		let y = state.y || this.model.position.y;
-		let z = state.z || this.model.position.z;
-		this.setPosition(new THREE.Vector3(x, y, z));
-
-		if (state.rotation != null) {
-			this.model.rotation.y = state.rotation * -1;
-		}
 	}
 
 	delete() {

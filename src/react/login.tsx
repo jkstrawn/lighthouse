@@ -1,9 +1,6 @@
 import * as React from 'react';
-import Network from "../scripts/core/_networkManager";
 import "../css/login.css";
 import Ui from "../scripts/ui/_userInterface";
-import ServerErrors from "../../shared/network/serverErrorEnum";
-import { StringHelper } from "../../shared/helpers/helpers";
 
 interface ILoginState {
     hidden?: boolean;
@@ -15,10 +12,9 @@ interface ILoginState {
 
 export class Login extends React.Component<{}, ILoginState> {
     constructor() {
-        super();
+        super(null);
 
         Ui.Login = this;
-        Ui.registerErrorHandler(ServerErrors.Login, (message) => this.showError(message));
 
         this.state = { username: "" };
     }
@@ -43,10 +39,7 @@ export class Login extends React.Component<{}, ILoginState> {
             <div id="existing-character">
                 <form id="existing-character-form" onSubmit={(e) => this.login(e)}>
                     <div id="existing-character-label">Enter existing character name</div>
-                    <input id="existing-character-input"
-                        className="character-name-input"
-                        value={this.state.username}
-                        onChange={(e) => this.changeName(e)} />
+                    
                     <input id="existing-character-button" className="join-button" type="submit" value="Login" />
                 </form>
             </div>
@@ -66,7 +59,6 @@ export class Login extends React.Component<{}, ILoginState> {
 
     private showCharacterCreateScreen() {
         this.setState({ hidden: true });
-        Ui.CharacterCreate.show();
     }
 
     private login(e) {
@@ -79,11 +71,5 @@ export class Login extends React.Component<{}, ILoginState> {
 
 
         this.setState({ showServerError: false, showUsernameTooShortError: false });
-
-        Network.joinWithCharacter({ name: this.state.username });
-    }
-
-    private changeName(event) {
-        this.setState({ username: StringHelper.capitalize(event.target.value) });
     }
 }

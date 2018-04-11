@@ -1,5 +1,5 @@
 {
-  "name": "Wayfare",
+  "name": "Lighthouse",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -12,16 +12,12 @@
   "license": "ISC",
   "dependencies": {
     "@types/jquery": "^3.2.12",
-    "@types/react": "^16.0.5",
-    "@types/react-dom": "^15.5.4",
+    "@types/react": "16.0.34",
+    "@types/react-dom": "16.0.3",
     "@types/socket.io-client": "^1.4.30",
-    "body-parser": "^1.17.1",
     "css-loader": "^0.28.7",
-    "express": "^4.15.2",
     "http": "0.0.0",
     "jquery": "^3.2.1",
-    "mongodb": "^2.2.25",
-    "node-gameloop": "^0.1.4",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "shader-particle-engine": "^1.0.6",
@@ -34,12 +30,11 @@
     "ts-loader": "^2.3.1"
   },
   "devDependencies": {
-    "@types/express": "^4.0.35",
-    "@types/node": "^6.0.52",
+    "@types/jquery": "^3.2.12",
     "@types/socket.io": "^1.4.27",
     "@types/three": "^0.84.19",
-    "@types/jquery": "^3.2.12",
     "typescript": "^2.4.2",
-    "webpack": "^2.3.2"
+    "webpack": "^2.3.2",
+    "webpack-cli": "^2.0.14"
   }
 }

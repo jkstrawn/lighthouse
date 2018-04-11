@@ -1,9 +1,6 @@
 import * as THREE from 'three';
-import map from './map';
 import * as $ from 'jquery';
-import AnimatedModel from "../animatedModel";
 import assetUrls from "../../core/assetUrls";
-import LiveModel from "./liveModel";
 import DeadModel from "./deadModel";
 import TextureData from "./textureData";
 
@@ -16,7 +13,6 @@ class AssetLoader {
     geometry = [];
 
     deadModels: Array<DeadModel> = [];
-    liveModels: Array<LiveModel> = [];
     numToLoad = 2;
     startTime = 0;
     callback = null;
@@ -68,12 +64,7 @@ class AssetLoader {
         console.log("getting assets...");
 
         this.callback = callback;
-        this.numToLoad += assetUrls.live.length;
         this.numToLoad += assetUrls.dead.length;
-
-        for (let asset of assetUrls.live) {
-            this.loadLiveModel(asset.name, asset.url);
-        }
 
         for (let asset of assetUrls.dead) {
             this.loadDeadModel(asset.name, asset.url);
@@ -83,18 +74,13 @@ class AssetLoader {
             this.loadTexture(texture);
         }
 
-        $.get("/getMap", (data) => {
-            console.log("got map data");
+        // $.get("/getMap", (data) => {
+        //     console.log("got map data");
 
-            let objectsMap = JSON.parse(data.objectsMap);
+        //     let objectsMap = JSON.parse(data.objectsMap);
 
-            map.setMapData(data.imageData, objectsMap);
-            this.checkDoneLoading();
-        });
-
-        // this.loader.load("models/tree.json", (geometry, materials) => {
-        //     this.geometry.push({ name: "tree", value: geometry });
-        //     //geometry.boundingSphere.set(new THREE.Vector3(0, 100, 0), 100);
+        //     map.setMapData(data.imageData, objectsMap);
+        //     this.checkDoneLoading();
         // });
     }
 
@@ -115,86 +101,12 @@ class AssetLoader {
         });
     }
 
-    loadLiveModel(name, url) {
-        if (url == assetUrls.live[0].url) {
-            let loader = new THREE.ObjectLoader();
-            loader.load(url, (result) => {
-                this.loadMultipleMeshes(result, name, url, loader.manager);
-            });
-            return;
-        }
-
-        this.loader.load(url, (geometry, materials) => {
-            let model = new LiveModel(name, url, geometry, materials);
-
-            this.liveModels.push(model);
-            this.checkDoneLoading();
-        });
-    }
-
-    loadMultipleMeshes(result, name, url, mana) {
-        let subMeshes = [];
-        let staticMeshes = [];
-
-        for (let child of result.children) {
-            if (child.type == "SkinnedMesh" && child.name != "Body") {
-                child.material.map.anisotropy = 2;
-                child.material.map.magFilter = THREE.LinearFilter;
-                child.material.map.minFilter = THREE.LinearFilter;
-
-                subMeshes.push(child);
-            }
-
-            if (child.type == "Mesh") {
-                child.material.map.anisotropy = 2;
-                child.material.map.magFilter = THREE.LinearFilter;
-                child.material.map.minFilter = THREE.LinearFilter;
-
-                staticMeshes.push(child);
-            }
-        }
-
-        let body = result.children.filter(x => x.name == "Body")[0];
-        let geometry = body.geometry;
-        let material = body.material;
-
-        // let rotation = new THREE.Matrix4().makeRotationX(-Math.PI / 2);
-        // geometry.applyMatrix(rotation);
-
-        let loader = new THREE.FileLoader(mana);
-        loader.load("animations/man_animations.json", (text) => {
-            let json = JSON.parse(text);
-            let animations = [];
-
-            for (let i = 0; i < json.length; i++) {
-
-                let clip = THREE.AnimationClip.parseAnimation(json[i], geometry.bones, null);
-                animations.push(clip);
-            }
-
-            let model = new LiveModel(name, url, geometry, [material], animations, subMeshes, staticMeshes);
-
-            this.liveModels.push(model);
-            this.checkDoneLoading();
-        });
-    }
-
     finishLoading() {
         let endTime = performance.now();
         let totalTime = Math.round(endTime - this.startTime);
         console.log("assets were loaded successfully after " + totalTime + "ms");
 
         this.callback();
-    }
-
-    getAnimatedModel(name: string): AnimatedModel {
-        let model = this.liveModels.filter(x => x.name == name)[0];
-
-        if (model == null) {
-            throw "Could not find model '" + name + "'";
-        }
-
-        return model.createModel();
     }
 
     getModel(name: string): THREE.Object3D {

@@ -1,6 +1,4 @@
 import BufferLoader from './bufferLoader';
-import EntityTypes from "../../../shared/entities/enum/entityTypeEnum";
-import ItemMaterials from "../../../shared/items/enum/itemMaterialEnum";
 interface AudioUrl {
     name: string;
     url: string;
@@ -185,19 +183,19 @@ class AudioPlayer {
     }
 
     playParticleHit(type: string, hitShield: boolean) {
-        switch (type) {
-            case EntityTypes.ProjectileSlime:
-                if (hitShield) {
-                    let number = this.randomIntBetween(3, 5);
-                    this.playSound(this.getBuffer('bugArcher' + number));
-                } else {
-                    this.playSound(this.getBuffer('bugArcher8'));
-                }
-                break;
-            case EntityTypes.ProjectileStar:
-                this.playSoundBuffer('shatter1');
-                break;
-        }
+        // switch (type) {
+        //     case EntityTypes.ProjectileSlime:
+        //         if (hitShield) {
+        //             let number = this.randomIntBetween(3, 5);
+        //             this.playSound(this.getBuffer('bugArcher' + number));
+        //         } else {
+        //             this.playSound(this.getBuffer('bugArcher8'));
+        //         }
+        //         break;
+        //     case EntityTypes.ProjectileStar:
+        //         this.playSoundBuffer('shatter1');
+        //         break;
+        // }
     }
 
     startBirdsSound() {
@@ -231,59 +229,59 @@ class AudioPlayer {
     }
 
     playDeathSoundFor(type) {
-        switch (type) {
-            case EntityTypes.Ant:
-                this.playSoundBuffer('bug6');
-                break;
-            case EntityTypes.Grub:
-                this.playSoundBuffer('bugArcher9');
-                break;
-            case EntityTypes.Bugbear:
-                this.playSoundBuffer('bugbearDeath');
-                break;
-        }
+        // switch (type) {
+        //     case EntityTypes.Ant:
+        //         this.playSoundBuffer('bug6');
+        //         break;
+        //     case EntityTypes.Grub:
+        //         this.playSoundBuffer('bugArcher9');
+        //         break;
+        //     case EntityTypes.Bugbear:
+        //         this.playSoundBuffer('bugbearDeath');
+        //         break;
+        // }
     }
 
     playAttackSoundFor(type) {
-        switch (type) {
-            case EntityTypes.Ant:
-                this.playSoundBuffer('bug7');
-                break;
-            case EntityTypes.Grub:
-                this.playBugArcherAttack();
-                break;
-            case EntityTypes.Bugbear:
-                this.playSoundBuffer('bugbearRoar', 0.1);
-                break;
-        }
+        // switch (type) {
+        //     case EntityTypes.Ant:
+        //         this.playSoundBuffer('bug7');
+        //         break;
+        //     case EntityTypes.Grub:
+        //         this.playBugArcherAttack();
+        //         break;
+        //     case EntityTypes.Bugbear:
+        //         this.playSoundBuffer('bugbearRoar', 0.1);
+        //         break;
+        // }
     }
 
     playDamagedSoundFor(type) {
-        switch (type) {
-            case EntityTypes.Ant:
-                this.playBugSound();
-                break;
-            case EntityTypes.Grub:
-                this.playSoundBuffer('bugArcher1');
-                break;
-            case EntityTypes.Bugbear:
-                this.playSoundBuffer('bugbearPain');
-                break;
-        }
+        // switch (type) {
+        //     case EntityTypes.Ant:
+        //         this.playBugSound();
+        //         break;
+        //     case EntityTypes.Grub:
+        //         this.playSoundBuffer('bugArcher1');
+        //         break;
+        //     case EntityTypes.Bugbear:
+        //         this.playSoundBuffer('bugbearPain');
+        //         break;
+        // }
     }
 
     playInventoryItemSound(material) {
-        switch (material) {
-            case ItemMaterials.Wood:
-                this.playSoundBuffer('wood');
-                break;
-            case ItemMaterials.Leather:
-                this.playSoundBuffer('leatherArmor');
-                break;
-            case ItemMaterials.Metal:
-                this.playSoundBuffer('metal');
-                break;
-        }
+        // switch (material) {
+        //     case ItemMaterials.Wood:
+        //         this.playSoundBuffer('wood');
+        //         break;
+        //     case ItemMaterials.Leather:
+        //         this.playSoundBuffer('leatherArmor');
+        //         break;
+        //     case ItemMaterials.Metal:
+        //         this.playSoundBuffer('metal');
+        //         break;
+        // }
     }
 
     getBuffer(soundName) {
