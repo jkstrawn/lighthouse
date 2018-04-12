@@ -6,6 +6,7 @@ import audio from "../audio/audioPlayer";
 import Ui from "../ui/_userInterface";
 import Input from "../ui/_input";
 import WordObject from '../ui/wordObject';
+import wordList from '../typing/wordList';
 
 class GameEngine {
 
@@ -15,11 +16,13 @@ class GameEngine {
 	player: Entity = null;
 	allWords: Array<WordObject> = [];
 	selectedWord: WordObject = null;
+	completedWords: Array<string> = [];
 
 	constructor() {
 		this.allWords = [
-			new WordObject(1, "sentence", 200, 200),
-			new WordObject(2, "waterfall", 200, 300)
+			new WordObject(1, "associate", 150, 500),
+			new WordObject(2, "waterfall", 400, 500),
+			new WordObject(3, "cabbage", 650, 500)
 		];		
 	}
 
@@ -57,7 +60,33 @@ class GameEngine {
 	}
 
 	onWordCompleted(word: WordObject) {
+		this.completedWords.push(word.word);
+
 		this.selectedWord = null;
+	}
+
+	getUnusedWord(currentWord: string): string {
+		let otherStartingLetters = this.allWords.map(x => x.word).filter(x => x != currentWord).map(x => x[0]);
+		let isValidWord = true;
+		let randomWord = "";
+
+		do {
+			randomWord = this.getRandomWord();
+			// console.log(`Got random word: ${randomWord} with other starting letters: ${otherStartingLetters}`);
+			let isWordUsed = this.completedWords.some(x => x == randomWord);
+			isValidWord = !isWordUsed && !otherStartingLetters.some(x => x == randomWord[0]);
+			// if (!isValidWord) {
+			// 	console.log(`Word is not valid!`);
+			// }
+		}
+		while (!isValidWord);
+
+		return randomWord;
+	}
+
+	getRandomWord(): string {
+		let rand = Math.floor(Math.random() * wordList.length);
+		return wordList[rand];
 	}
 
 	deleteEntity(id: number, wasKilled: boolean) {

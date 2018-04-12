@@ -37,7 +37,7 @@ export default class WordObject {
     resetWord() {
         game.onWordCompleted(this);
 
-        this.word = "paragraph";
+        this.word = game.getUnusedWord(this.word);
         this.index = 0;
     }
 }
