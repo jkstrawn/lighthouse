@@ -46,7 +46,11 @@ input:focus {
 .word-area {
     position: absolute;
     color: white;
-    font-size: 26px;
+    font-size: 28px;
+}
+
+.next-word {
+    font-size: 20px;
 }
 
 /* 

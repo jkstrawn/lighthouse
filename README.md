@@ -26,6 +26,10 @@ spell effects
 
 powerups
 
+hiding words:
++ hide entire word once you select it
++ hide progress you make on word
+
 choose skills / strengths
 
 money from completing level:

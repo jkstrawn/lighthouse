@@ -78,13 +78,15 @@ export class Home extends React.Component<{}, IHomeState> {
 
             let dt = clock.getDelta() * 1000;
 
-            game.render(dt);
             game.update(dt);
+            game.render(dt);
         }
 
         window["animate"] = animate;
 
         let clock = new THREE.Clock(true);
+
+        window["clock"]
 
         game.init();
     }

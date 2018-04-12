@@ -7,6 +7,7 @@ import Ui from "../ui/_userInterface";
 import Input from "../ui/_input";
 import WordObject from '../ui/wordObject';
 import wordList from '../typing/wordList';
+import WordStats from '../typing/_wordStats';
 
 class GameEngine {
 
@@ -17,17 +18,20 @@ class GameEngine {
 	allWords: Array<WordObject> = [];
 	selectedWord: WordObject = null;
 	completedWords: Array<string> = [];
+	lastWordCompletedAt: number;
 
 	constructor() {
-		this.allWords = [
-			new WordObject(1, "associate", 150, 500),
-			new WordObject(2, "waterfall", 400, 500),
-			new WordObject(3, "cabbage", 650, 500)
-		];		
+
 	}
 
 	init() {
 		renderer.init();
+
+		this.allWords = [
+			new WordObject(1, this.getRandomWord(), 150, 500),
+			new WordObject(2, this.getRandomWord(), 400, 500),
+			new WordObject(3, this.getRandomWord(), 650, 500)
+		];
 
 		Ui.updateWordState(this.allWords);
 
@@ -51,6 +55,7 @@ class GameEngine {
 			let letter = word.getNextLetter();
 			if (letter == key) {
 				this.selectedWord = word;
+				this.onWordStart(word);
 			}
 		}
 	}
@@ -59,14 +64,44 @@ class GameEngine {
 		return this.allWords;
 	}
 
-	onWordCompleted(word: WordObject) {
-		this.completedWords.push(word.word);
+	onWordStart(word: WordObject) {
+		var millisecondsTaken = performance.now() - this.lastWordCompletedAt;
 
-		this.selectedWord = null;
+		if (millisecondsTaken < 1000) {
+			WordStats.timeBetweenWordsCount++;
+			WordStats.timeBetweenWordsTotal += millisecondsTaken;
+
+			WordStats.outputTimeBetween();
+		}
 	}
 
-	getUnusedWord(currentWord: string): string {
-		let otherStartingLetters = this.allWords.map(x => x.word).filter(x => x != currentWord).map(x => x[0]);
+	onWordCompleted(word: string, id: number, success: boolean) {
+		
+		if (success) {
+			this.lastWordCompletedAt = performance.now();
+			this.completedWords.push(word);
+
+			if (id == 1) {
+				this.activateLeftShield();
+			}
+			
+			if (id == 2) {
+				this.fireGun();
+			}
+			
+			if (id == 3) {
+				this.activateRightShield();
+			}
+		}
+
+		this.selectedWord = null;
+		console.log("update state");
+		console.log(this.allWords[0].word);
+		Ui.updateWordState(this.allWords);
+	}
+
+	getUnusedWord(currentLetter: string): string {
+		let otherStartingLetters = this.allWords.reduce((a, b) => a.concat(b.getStartingLetters()), []).filter(x => x != currentLetter);
 		let isValidWord = true;
 		let randomWord = "";
 
@@ -87,6 +122,18 @@ class GameEngine {
 	getRandomWord(): string {
 		let rand = Math.floor(Math.random() * wordList.length);
 		return wordList[rand];
+	}
+
+	activateLeftShield() {
+		console.log("left shield!");
+	}
+
+	activateRightShield() {
+		console.log("right shield!");
+	}
+
+	fireGun() {
+		console.log("fire gun!");
 	}
 
 	deleteEntity(id: number, wasKilled: boolean) {

@@ -22,13 +22,18 @@ export class WordComponent extends React.Component<IWordProps, IWordState> {
         let style = this.getStyle();
 
         return <div className="word-area" style={style}>
-            {wordObject.word.split('').map((x, i) => {
-                let typed = i < wordObject.index;
+            <div>
+                {wordObject.word.split('').map((x, i) => {
+                    let typed = i < wordObject.index;
 
-                return <span key={i} className={typed ? "typed-letter" : ""}>
-                    {x}
-                </span>
-            })}
+                    return <span key={i} className={typed ? "typed-letter" : ""}>
+                        {x}
+                    </span>
+                })}
+            </div>
+            <div className="next-word">
+                {wordObject.nextWord}
+            </div>
         </div>
     }
 
