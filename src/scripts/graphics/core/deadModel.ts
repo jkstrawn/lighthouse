@@ -12,16 +12,6 @@ export default class DeadModel {
         this.children = scene.children.filter(x => x.type == "Mesh");
 
         for (let child of this.children) {
-            // if (child.material.name == "LeavesMat") {
-            // child.castShadow = true;
-            //     var customDepthMaterial = new THREE.MeshDepthMaterial( {
-            //         depthPacking: THREE.RGBADepthPacking,
-            //         alphaMap: child.material.map, // or, alphaMap: myAlphaMap
-            //         alphaTest: 0.5
-            //     } );
-
-            //     child.customDepthMaterial = customDepthMaterial;
-            // }
             child.material["map"].anisotropy = 2;
             //var bufferGeometry = new THREE.BufferGeometry().fromGeometry( geometry );
             this.model.add(child);

@@ -8,6 +8,7 @@ import Input from "../ui/_input";
 import WordObject from '../ui/wordObject';
 import wordList from '../typing/wordList';
 import WordStats from '../typing/_wordStats';
+import assets from '../graphics/core/assetLoader';
 
 class GameEngine {
 
@@ -26,6 +27,11 @@ class GameEngine {
 
 	init() {
 		renderer.init();
+
+		assets.loadAssets(() => {
+			// when assets have finished loading, let renderer know and then let the game engine know
+			renderer.assetsLoaded();
+		});
 
 		this.allWords = [
 			new WordObject(1, this.getRandomWord(), 150, 500),

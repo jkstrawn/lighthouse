@@ -13,7 +13,7 @@ class AssetLoader {
     geometry = [];
 
     deadModels: Array<DeadModel> = [];
-    numToLoad = 2;
+    numToLoad = 1;
     startTime = 0;
     callback = null;
 
@@ -21,6 +21,7 @@ class AssetLoader {
 
     constructor() {
         let loadingManager = new THREE.LoadingManager(() => {
+            // all textures are done loading
             this.checkDoneLoading();
         });
         this.textureLoader = new THREE.TextureLoader(loadingManager);
@@ -73,21 +74,12 @@ class AssetLoader {
         for (let texture of assetUrls.textures) {
             this.loadTexture(texture);
         }
-
-        // $.get("/getMap", (data) => {
-        //     console.log("got map data");
-
-        //     let objectsMap = JSON.parse(data.objectsMap);
-
-        //     map.setMapData(data.imageData, objectsMap);
-        //     this.checkDoneLoading();
-        // });
     }
 
     checkDoneLoading() {
         this.numToLoad--;
 
-        if (this.numToLoad == 0) {
+        if (this.numToLoad <= 0) {
             this.finishLoading();
         }
     }

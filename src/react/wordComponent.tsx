@@ -22,7 +22,7 @@ export class WordComponent extends React.Component<IWordProps, IWordState> {
         let style = this.getStyle();
 
         return <div className="word-area" style={style}>
-            <div>
+            <div className="first-word">
                 {wordObject.word.split('').map((x, i) => {
                     let typed = i < wordObject.index;
 

@@ -7,6 +7,7 @@ import fireballShader from "./core/shaders/fireballShader";
 import ProjectileModelSlime from "./particles/models/projectileModelSlime";
 import ProjectileModel from "./particles/models/projectileModel";
 import ProjectileModelStar from "./particles/models/projectileModelStar";
+import assetUrls from '../core/assetUrls';
 
 export default class Renderer {
 
@@ -16,11 +17,6 @@ export default class Renderer {
 	static projector: THREE.Projector;
 	static raycaster = new THREE.Raycaster();
 	static stats: Stats = new Stats();
-
-	static img: HTMLImageElement;
-	static imageData: ImageData;
-	static ctx: CanvasRenderingContext2D;
-	static canvas: HTMLCanvasElement;
 
 	static container: HTMLDivElement;
 	static models: Array<THREE.Object3D> = [];
@@ -74,18 +70,16 @@ export default class Renderer {
 		this.renderer = new THREE.WebGLRenderer({ antialias: true });
 		this.renderer.setPixelRatio(devicePixelRatio || 1);
 		this.renderer.setSize(this.screenWidth, this.screenHeight);
-		this.renderer.shadowMap.enabled = true;
-		//this.renderer.shadowMap.type = THREE.PCFSoftShadowMap
-
-		this.canvas = document.createElement('canvas');
-		this.canvas.width = this.heightmapSize;
-		this.canvas.height = this.heightmapSize;
-
-		this.img = new Image();
-		this.ctx = this.canvas.getContext('2d');
+		
 
 
+		THREE.Geometry
+		let geo = new THREE.BoxBufferGeometry(10, 10, 10);
+		let mat = new THREE.MeshBasicMaterial();
+		let mesh = new THREE.Mesh(geo, mat);
+		
 
+		this.scene.add(mesh);
 
 
 		// let canvas = document.createElement('canvas');
@@ -149,11 +143,25 @@ export default class Renderer {
 		// this.scene.add(helper);
 	}
 
-	static assetsLoaded(callback: Function) {
+	static assetsLoaded() {
 
-
-			callback();
 		particles.initialize(this.scene);
+
+		let ship = this.createModel("spaceship");
+		ship.scale.set(6, 6, 6);
+		ship.rotation.y = Math.PI;
+		ship.position.set(0, 0, -75);
+		window["ship"] = ship;
+
+		this.scene.add(ship);
+		
+		let enemy = this.createModel("enemy");
+		enemy.scale.set(6, 6, 6);
+		enemy.position.set(0, 0, 130);
+		enemy.rotation.y = -Math.PI / 2;
+		window["enemy"] = enemy;
+
+		this.scene.add(enemy);
 	}
 
 	static createModel(name: string): THREE.Object3D {

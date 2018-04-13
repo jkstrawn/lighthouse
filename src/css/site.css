@@ -47,6 +47,7 @@ input:focus {
     position: absolute;
     color: white;
     font-size: 28px;
+    text-align: center;
 }
 
 .next-word {
