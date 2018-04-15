@@ -5,19 +5,21 @@ import renderer from '../graphics/renderer';
 import audio from "../audio/audioPlayer";
 import Ui from "../ui/_userInterface";
 import Input from "../ui/_input";
-import WordObject from '../ui/wordObject';
+import WordObject from '../typing/wordObject';
 import wordList from '../typing/wordList';
 import WordStats from '../typing/_wordStats';
 import assets from '../graphics/core/assetLoader';
 import Enemy from './enemy';
 import Missile from '../entity/missile';
+import Player from '../entity/player';
+import MissileSide from '../enum/missileSideEnum';
 
 class GameEngine {
 
 	debug: boolean = false;
 	entities: Array<Entity> = [];
 	username: string;
-	player: Entity = null;
+	player: Player = null;
 	allWords: Array<WordObject> = [];
 	selectedWord: WordObject = null;
 	completedWords: Array<string> = [];
@@ -35,6 +37,7 @@ class GameEngine {
 		assets.loadAssets(() => {
 			// when assets have finished loading, let renderer know and then let the game engine know
 			renderer.assetsLoaded();
+			this.assetsLoaded();
 		});
 
 		this.allWords = [
@@ -48,6 +51,15 @@ class GameEngine {
 		this.enemy = new Enemy(new THREE.Vector3(0, 0, 130));
 
 		window["animate"]();
+	}
+
+	assetsLoaded() {
+		let playerModel = renderer.createModel("spaceship");
+		playerModel.scale.set(6, 6, 6);
+		playerModel.rotation.y = Math.PI;
+		this.player = new Player(this.nextId++, playerModel, new THREE.Vector3(0, 0, -75), 100);
+
+		this.addEntity(this.player);
 	}
 
 	onKeyPress(key: string) {
@@ -94,15 +106,15 @@ class GameEngine {
 			this.completedWords.push(word);
 
 			if (id == 1) {
-				this.activateLeftShield();
+				this.player.increaseShield(MissileSide.Left);
 			}
 			
 			if (id == 2) {
-				this.fireGun();
+				this.player.fireGun();
 			}
 			
 			if (id == 3) {
-				this.activateRightShield();
+				this.player.increaseShield(MissileSide.Right);
 			}
 		}
 
@@ -148,11 +160,15 @@ class GameEngine {
 		console.log("fire gun!");
 	}
 
-	createMissile(position: THREE.Vector3) {
+	createMissile(position: THREE.Vector3, side: string) {
 		let model = renderer.createModel("missile");
-		let missile = new Missile(this.nextId++, model, position);
+		let missile = new Missile(this.nextId++, model, position, side);
 
 		this.addEntity(missile);
+	}
+
+	hitPlayer(side: string) {
+		this.player.missileHit(side);
 	}
 
 	addEntity(entity: Entity) {

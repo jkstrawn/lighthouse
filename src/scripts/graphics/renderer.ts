@@ -42,16 +42,6 @@ export default class Renderer {
 			}
 		}
 
-		// this.uniforms = {
-		// 	time: { type: "f", value: 1.0 },
-		// 	tExplosion: { type: "t", value: assets.getTexture("explosion") },
-		// 	brightness: { type: "f", value: 1 },
-		// 	fireSpeed: { type: "f", value: 0.75 },
-		// 	turbulenceDetail: { type: "f", value: 0.4 },
-		// 	displacementHeight: { type: "f", value: 0.5 },
-		// 	pulseHeight: { type: "f", value: 0.2 },
-		// };
-
 		this.addRenderer();
 		this.addCamera();
 		this.addLights();
@@ -70,24 +60,6 @@ export default class Renderer {
 		this.renderer = new THREE.WebGLRenderer({ antialias: true });
 		this.renderer.setPixelRatio(devicePixelRatio || 1);
 		this.renderer.setSize(this.screenWidth, this.screenHeight);
-		
-
-
-		THREE.Geometry
-		let geo = new THREE.BoxBufferGeometry(10, 10, 10);
-		let mat = new THREE.MeshBasicMaterial();
-		let mesh = new THREE.Mesh(geo, mat);
-		
-
-		this.scene.add(mesh);
-
-
-		// let canvas = document.createElement('canvas');
-
-		// this.canvas.width = this.heightmapSize;
-		// this.canvas.height = this.heightmapSize;
-
-		// this.ctx = this.canvas.getContext('2d');
 	}
 
 	static addCamera() {
@@ -138,22 +110,11 @@ export default class Renderer {
 		this.sunlight = sunlight;
 
 		this.scene.add(sunlight);
-
-		// var helper = new THREE.CameraHelper(sunlight.shadow.camera);
-		// this.scene.add(helper);
 	}
 
 	static assetsLoaded() {
 
 		particles.initialize(this.scene);
-
-		let ship = this.createModel("spaceship");
-		ship.scale.set(6, 6, 6);
-		ship.rotation.y = Math.PI;
-		ship.position.set(0, 0, -75);
-		window["ship"] = ship;
-
-		this.scene.add(ship);
 		
 		let enemy = this.createModel("enemy");
 		enemy.scale.set(6, 6, 6);
@@ -172,23 +133,6 @@ export default class Renderer {
 
 		return model;
 	}
-
-	// static createProjectile(type: string, position: THREE.Vector3): ProjectileModel {
-	// 	let particle: ProjectileModel;
-
-	// 	switch (type) {
-	// 		case EntityTypes.ProjectileSlime:
-	// 			particle = new ProjectileModelSlime(type);
-	// 			break;
-	// 		case EntityTypes.ProjectileStar:
-	// 			particle = new ProjectileModelStar(type, position);
-	// 			break;
-	// 	}
-
-	// 	this.scene.add(particle);
-
-	// 	return particle;
-	// }
 
 	static getModel(url) {
 		return assets.getModel(url);
@@ -229,14 +173,8 @@ export default class Renderer {
 	}
 
 	static update(dt) {
-
 		particles.update(dt);
 
-		//this.uniforms.time.value += 0.275 * dt / 1000;
 		this.stats.update();
-
-		//this.camera.lookAt(new THREE.Vector3(0, 0, 0));
-
-		//THREE.AnimationHandler.update(dt / 1000);
 	}
 }

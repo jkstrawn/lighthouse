@@ -1,20 +1,14 @@
-import React = require("react");
-import WordObject from "../scripts/ui/wordObject";
+import * as React from 'react';
+import WordObject from "../scripts/typing/wordObject";
 import { CSSProperties } from "react";
-
-interface IWordState {
-    word: string;
-}
 
 interface IWordProps {
     wordObject: WordObject;
 }
 
-export class WordComponent extends React.Component<IWordProps, IWordState> {
+export class WordComponent extends React.Component<IWordProps, {}> {
     constructor(props) {
         super(props);
-
-        this.state = { word: "sentence" };
     }
 
     public render() {

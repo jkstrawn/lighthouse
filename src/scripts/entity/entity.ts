@@ -13,27 +13,27 @@ export default class Entity {
 	model: THREE.Object3D;
 	health: number;
 	maxHealth: number;
-
+	
 	setRemoveFromWorld: boolean = false;
 	setKill: boolean = false;
 	dead: boolean = false;
 	debugInfo: DebugInfo = new DebugInfo();
 	hitboxSize: number = 10;
-
+	
 	constructor(id: number, model: THREE.Object3D, position: THREE.Vector3, health: number) {
-
+		
 		this.id = id;
 		this.model = model;
 		this.health = health;
 		this.maxHealth = health;
-
+		
 		this.setPosition(position);
 	}
-
+	
 	getX() {
 		return this.model.position.x;
 	}
-
+	
 	getY() {
 		return this.model.position.z;
 	}
@@ -63,14 +63,14 @@ export default class Entity {
 	}
 
 	delete() {
-		console.log("deleting entity " + this.id);
+		// console.log("deleting entity " + this.id);
 		renderer.removeModel(this.model);
 		this.deleteDebug();
 	}
 
 	checkKill() {
 		if (this.setKill) {
-			console.log("entity " + this.id + " is being removed");
+			// console.log("entity " + this.id + " is being removed");
 			this.playDeathAnimation();
 
 			this.setKill = false;

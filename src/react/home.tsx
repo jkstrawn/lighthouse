@@ -4,11 +4,13 @@ import * as $ from 'jquery';
 import * as THREE from "three";
 import Ui from "../scripts/ui/_userInterface";
 import Input from "../scripts/ui/_input";
-// import { Login } from "./login";
+import { WordComponent } from './wordComponent';
+import WordObject from '../scripts/typing/wordObject';
 import "../css/site.css";
 import "../css/login.css";
-import { WordComponent } from './wordComponent';
-import WordObject from '../scripts/ui/wordObject';
+import { PlayerHealthBar } from './playerHealthbar';
+import { EnemyHealthBar } from './enemyHealthBar';
+import { ShieldEnergyBar } from './shieldEnergyBar';
 
 window["adminMap"] = null;
 window["game"] = game;
@@ -37,6 +39,9 @@ export class Home extends React.Component<{}, IHomeState> {
                 <WordComponent key={x.id} wordObject={x} />
             )}
 
+            <EnemyHealthBar/>
+            <PlayerHealthBar/>
+            <ShieldEnergyBar/>
             {/* <div id="interface" className={this.state.interfaceHidden ? "hidden" : ""}>
 
             </div>

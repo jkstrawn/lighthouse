@@ -1,6 +1,9 @@
 // import { Login } from "../../react/login";
 import { Home } from "../../react/home";
-import WordObject from "./wordObject";
+import WordObject from "../typing/wordObject";
+import { PlayerHealthBar } from "../../react/playerHealthbar";
+import { EnemyHealthBar } from "../../react/enemyHealthBar";
+import { ShieldEnergyBar } from "../../react/shieldEnergyBar";
 
 interface ErrorHandler {
     type: number;
@@ -10,8 +13,11 @@ interface ErrorHandler {
 export default class Ui {
     static errorHandlers: Array<ErrorHandler> = [];
     static mouseMoveHandlers: Array<Function> = [];
-
+    
     static Home: Home;
+    static PlayerHealth: PlayerHealthBar;
+    static EnemyHealth: EnemyHealthBar;
+    static ShieldEnergy: ShieldEnergyBar;
     // static Login: Login;
 
     static initiate() {

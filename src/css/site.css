@@ -54,6 +54,50 @@ input:focus {
     font-size: 20px;
 }
 
+.health-bar {
+    height: 6px;
+    width: 316px;
+    position: absolute;
+    z-index: 2;
+    border: 1px solid gray;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.player-health-bar {
+    bottom: 10px;
+    left: calc(50% - 159px);
+}
+
+.enemy-health-bar {
+    top: 10px;
+    left: calc(50% - 159px);
+}
+
+.left-energy-bar {
+    top: 600px;
+    left: 150px;
+    width: 100px !important;
+}
+
+.right-energy-bar {
+    top: 600px;
+    right: 150px;
+    width: 100px !important;
+}
+
+.health-bar-filling {
+    background: red;
+    width: 0%;
+    height: 100%;
+}
+
+.energy-bar-filling {
+    background: blue;
+    width: 0%;
+    height: 100%;
+}
+
 /* 
 #menu {
     width: 1200px;
