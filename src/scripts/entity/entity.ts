@@ -18,7 +18,6 @@ export default class Entity {
 	setKill: boolean = false;
 	dead: boolean = false;
 	debugInfo: DebugInfo = new DebugInfo();
-	timeSinceUpdate: number = 0;
 	hitboxSize: number = 10;
 
 	constructor(id: number, model: THREE.Object3D, position: THREE.Vector3, health: number) {
@@ -81,10 +80,10 @@ export default class Entity {
 
 	update(dt) {
 		// if it has been 3 seconds since the last update then assume they have disconnectd, and delete the player
-		this.timeSinceUpdate += dt;
-		if (this.timeSinceUpdate > 3000) {
-			this.setRemoveFromWorld = true;
-		}
+		// this.timeSinceUpdate += dt;
+		// if (this.timeSinceUpdate > 3000) {
+		// 	this.setRemoveFromWorld = true;
+		// }
 
 		this.checkKill();
 		if (this.dead) {

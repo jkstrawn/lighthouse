@@ -212,7 +212,7 @@ export default class Renderer {
 		this.renderer.setSize(this.screenWidth, this.screenHeight);
 	}
 
-	static addModel(model) {
+	static addModel(model: THREE.Object3D) {
 		this.scene.add(model);
 	}
 

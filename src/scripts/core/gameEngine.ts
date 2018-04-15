@@ -9,6 +9,8 @@ import WordObject from '../ui/wordObject';
 import wordList from '../typing/wordList';
 import WordStats from '../typing/_wordStats';
 import assets from '../graphics/core/assetLoader';
+import Enemy from './enemy';
+import Missile from '../entity/missile';
 
 class GameEngine {
 
@@ -20,6 +22,8 @@ class GameEngine {
 	selectedWord: WordObject = null;
 	completedWords: Array<string> = [];
 	lastWordCompletedAt: number;
+	enemy: Enemy;
+	nextId: number = 1;
 
 	constructor() {
 
@@ -40,6 +44,8 @@ class GameEngine {
 		];
 
 		Ui.updateWordState(this.allWords);
+
+		this.enemy = new Enemy(new THREE.Vector3(0, 0, 130));
 
 		window["animate"]();
 	}
@@ -142,8 +148,19 @@ class GameEngine {
 		console.log("fire gun!");
 	}
 
+	createMissile(position: THREE.Vector3) {
+		let model = renderer.createModel("missile");
+		let missile = new Missile(this.nextId++, model, position);
+
+		this.addEntity(missile);
+	}
+
+	addEntity(entity: Entity) {
+		this.entities.push(entity);
+	}
+
 	deleteEntity(id: number, wasKilled: boolean) {
-		let entity = game.entities.filter(x => x.id == id)[0];
+		let entity = this.entities.filter(x => x.id == id)[0];
 		if (entity) {
 			if (wasKilled) {
 				entity.setKill = true;
@@ -183,6 +200,7 @@ class GameEngine {
 	}
 
 	update(dt) {
+		this.enemy.update(dt);
 		this.updateEntities(dt);
 		this.handleInput();
 

@@ -13,6 +13,7 @@ const assetUrls: AssetUrls = new AssetUrls();
 assetUrls.dead = [
     { name: "spaceship", url: "models/spaceship.json" },
     { name: "enemy", url: "models/enemyShip.json" },
+    { name: "missile", url: "models/missile.json" },
 ];
 
 assetUrls.textures = [
