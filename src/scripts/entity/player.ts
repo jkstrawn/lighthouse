@@ -1,6 +1,7 @@
 import Entity from "./entity";
 import MissileSide from "../enum/missileSideEnum";
 import Ui from "../ui/_userInterface";
+import game from "../core/gameEngine";
 
 class Shields {
     left: number = 50;
@@ -15,6 +16,7 @@ export default class Player extends Entity {
     constructor(id: number, model: THREE.Object3D, position: THREE.Vector3, health: number) {
         super(id, model, position, health);
 
+        Ui.PlayerHealth.updateHealth(this.maxHealth, this.health);
         Ui.ShieldEnergy.updateEnergy(this.shields.left, this.shields.right);
     }
 
@@ -30,9 +32,14 @@ export default class Player extends Entity {
     }
 
     takeDamage(side: string) {
-        this.health -= 2;
+        //this.health -= 2;
+        this.health -= 10;
 
         Ui.PlayerHealth.updateHealth(this.maxHealth, this.health);
+
+        if (this.health <= 0) {
+            game.gameover();
+        }
     }
 
     fireGun() {

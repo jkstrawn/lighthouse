@@ -11,6 +11,7 @@ import "../css/login.css";
 import { PlayerHealthBar } from './playerHealthbar';
 import { EnemyHealthBar } from './enemyHealthBar';
 import { ShieldEnergyBar } from './shieldEnergyBar';
+import { GameOver } from './gameover';
 
 window["adminMap"] = null;
 window["game"] = game;
@@ -42,6 +43,7 @@ export class Home extends React.Component<{}, IHomeState> {
             <EnemyHealthBar/>
             <PlayerHealthBar/>
             <ShieldEnergyBar/>
+            <GameOver/>
             {/* <div id="interface" className={this.state.interfaceHidden ? "hidden" : ""}>
 
             </div>

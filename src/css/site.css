@@ -8,7 +8,6 @@
     margin: 0px;
     padding: 0px;
     font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif;
-    color: #dad4be;
 }
 
 body {
@@ -45,9 +44,9 @@ input:focus {
 
 .word-area {
     position: absolute;
-    color: white;
     font-size: 28px;
     text-align: center;
+    color: #dad4be;
 }
 
 .next-word {
@@ -96,6 +95,33 @@ input:focus {
     background: blue;
     width: 0%;
     height: 100%;
+}
+
+.you-lose {
+    position: absolute;
+    width: 400px;
+    height: 500px;
+    left: calc(50% - 200px);
+    top: 100px;
+    background: white;
+    text-align: center;
+    color: black;
+    padding: 20px;
+    z-index: 1000;
+}
+
+.restart-game-button {
+    margin-top: 30px;
+    border-radius: 5px;
+    width: 150px;
+    height: 30px;
+    border: 1px solid black;
+    text-align: center;
+}
+
+.restart-game-button:hover {
+    background: gray;
+    cursor: pointer;
 }
 
 /* 

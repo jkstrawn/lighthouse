@@ -26,6 +26,7 @@ class GameEngine {
 	lastWordCompletedAt: number;
 	enemy: Enemy;
 	nextId: number = 1;
+	paused: boolean;
 
 	constructor() {
 
@@ -48,8 +49,6 @@ class GameEngine {
 
 		Ui.updateWordState(this.allWords);
 
-		this.enemy = new Enemy(new THREE.Vector3(0, 0, 130));
-
 		window["animate"]();
 	}
 
@@ -60,6 +59,30 @@ class GameEngine {
 		this.player = new Player(this.nextId++, playerModel, new THREE.Vector3(0, 0, -75), 100);
 
 		this.addEntity(this.player);
+
+		let enemyModel = renderer.createModel("enemy");
+		enemyModel.scale.set(6, 6, 6);
+		enemyModel.position.set(0, 0, 130);
+		enemyModel.rotation.y = -Math.PI / 2;
+		this.enemy = new Enemy(this.nextId++, enemyModel, new THREE.Vector3(0, 0, 130));
+
+		this.addEntity(this.enemy);
+	}
+
+	restart() {
+		for (var entity of this.entities) {
+			entity.delete();
+		}
+
+		this.entities = [];
+		this.paused = false;
+
+		this.assetsLoaded();
+	}
+
+	gameover() {
+		this.paused = true;
+		Ui.GameOver.show();
 	}
 
 	onKeyPress(key: string) {
@@ -100,7 +123,7 @@ class GameEngine {
 	}
 
 	onWordCompleted(word: string, id: number, success: boolean) {
-		
+
 		if (success) {
 			this.lastWordCompletedAt = performance.now();
 			this.completedWords.push(word);
@@ -108,11 +131,11 @@ class GameEngine {
 			if (id == 1) {
 				this.player.increaseShield(MissileSide.Left);
 			}
-			
+
 			if (id == 2) {
 				this.player.fireGun();
 			}
-			
+
 			if (id == 3) {
 				this.player.increaseShield(MissileSide.Right);
 			}
@@ -216,7 +239,10 @@ class GameEngine {
 	}
 
 	update(dt) {
-		this.enemy.update(dt);
+		if (this.paused) {
+			return;
+		}
+
 		this.updateEntities(dt);
 		this.handleInput();
 

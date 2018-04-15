@@ -113,16 +113,7 @@ export default class Renderer {
 	}
 
 	static assetsLoaded() {
-
 		particles.initialize(this.scene);
-		
-		let enemy = this.createModel("enemy");
-		enemy.scale.set(6, 6, 6);
-		enemy.position.set(0, 0, 130);
-		enemy.rotation.y = -Math.PI / 2;
-		window["enemy"] = enemy;
-
-		this.scene.add(enemy);
 	}
 
 	static createModel(name: string): THREE.Object3D {

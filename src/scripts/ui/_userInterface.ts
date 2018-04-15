@@ -4,6 +4,7 @@ import WordObject from "../typing/wordObject";
 import { PlayerHealthBar } from "../../react/playerHealthbar";
 import { EnemyHealthBar } from "../../react/enemyHealthBar";
 import { ShieldEnergyBar } from "../../react/shieldEnergyBar";
+import { GameOver } from "../../react/gameover";
 
 interface ErrorHandler {
     type: number;
@@ -18,6 +19,7 @@ export default class Ui {
     static PlayerHealth: PlayerHealthBar;
     static EnemyHealth: EnemyHealthBar;
     static ShieldEnergy: ShieldEnergyBar;
+    static GameOver: GameOver;
     // static Login: Login;
 
     static initiate() {
