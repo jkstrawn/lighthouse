@@ -32,9 +32,23 @@ export class WordComponent extends React.Component<IWordProps, {}> {
     }
 
     getStyle(): CSSProperties {
-        return {
-            left: this.props.wordObject.x + "px",
-            top: this.props.wordObject.y + "px"
+        let word = this.props.wordObject;
+        let style: CSSProperties = {};
+
+        if (word.x > 0) {
+            style.left = word.x + "px";
+        } else if (word.x < 0) {
+            style.right = -word.x + "px";
+        } else {
+            style.left = "calc(50% - 100px)";
         }
+
+        if (word.y > 0) {
+            style.top = word.y + "px";
+        } else {
+            style.bottom = -word.y + "px";
+        }
+        
+        return style;
     }
 }

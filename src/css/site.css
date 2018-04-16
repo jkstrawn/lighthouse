@@ -44,6 +44,7 @@ input:focus {
 
 .word-area {
     position: absolute;
+    width: 200px;
     font-size: 28px;
     text-align: center;
     color: #dad4be;
@@ -74,14 +75,14 @@ input:focus {
 }
 
 .left-energy-bar {
-    top: 600px;
-    left: 150px;
+    bottom: 100px;
+    left: 70px;
     width: 100px !important;
 }
 
 .right-energy-bar {
-    top: 600px;
-    right: 150px;
+    bottom: 100px;
+    right: 70px;
     width: 100px !important;
 }
 
@@ -112,14 +113,25 @@ input:focus {
 
 .restart-game-button {
     margin-top: 30px;
-    border-radius: 5px;
     width: 150px;
-    height: 30px;
-    border: 1px solid black;
-    text-align: center;
 }
 
-.restart-game-button:hover {
+.pause-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.button {
+    border: 1px solid black;
+    text-align: center;
+    border-radius: 5px;
+    padding: 10px;
+    background: white;
+}
+
+
+.button:hover {
     background: gray;
     cursor: pointer;
 }

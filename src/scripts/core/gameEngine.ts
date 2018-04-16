@@ -13,6 +13,7 @@ import Enemy from './enemy';
 import Missile from '../entity/missile';
 import Player from '../entity/player';
 import MissileSide from '../enum/missileSideEnum';
+import Rocket from '../entity/rocket';
 
 class GameEngine {
 
@@ -42,9 +43,9 @@ class GameEngine {
 		});
 
 		this.allWords = [
-			new WordObject(1, this.getRandomWord(), 150, 500),
-			new WordObject(2, this.getRandomWord(), 400, 500),
-			new WordObject(3, this.getRandomWord(), 650, 500)
+			new WordObject(1, this.getRandomWord(), 20, -120),
+			new WordObject(2, this.getRandomWord(), 0, -210),
+			new WordObject(3, this.getRandomWord(), -20, -120)
 		];
 
 		Ui.updateWordState(this.allWords);
@@ -54,16 +55,11 @@ class GameEngine {
 
 	assetsLoaded() {
 		let playerModel = renderer.createModel("spaceship");
-		playerModel.scale.set(6, 6, 6);
-		playerModel.rotation.y = Math.PI;
 		this.player = new Player(this.nextId++, playerModel, new THREE.Vector3(0, 0, -75), 100);
 
 		this.addEntity(this.player);
 
 		let enemyModel = renderer.createModel("enemy");
-		enemyModel.scale.set(6, 6, 6);
-		enemyModel.position.set(0, 0, 130);
-		enemyModel.rotation.y = -Math.PI / 2;
 		this.enemy = new Enemy(this.nextId++, enemyModel, new THREE.Vector3(0, 0, 130));
 
 		this.addEntity(this.enemy);
@@ -190,8 +186,19 @@ class GameEngine {
 		this.addEntity(missile);
 	}
 
+	createRocket(position: THREE.Vector3) {
+		let model = renderer.createModel("rocket");
+		let rocket = new Rocket(this.nextId++, model, position);
+
+		this.addEntity(rocket);
+	}
+
 	hitPlayer(side: string) {
 		this.player.missileHit(side);
+	}
+
+	hitEnemy() {
+		this.enemy.rocketHit();
 	}
 
 	addEntity(entity: Entity) {

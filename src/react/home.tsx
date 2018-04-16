@@ -44,6 +44,8 @@ export class Home extends React.Component<{}, IHomeState> {
             <PlayerHealthBar/>
             <ShieldEnergyBar/>
             <GameOver/>
+
+            <div className="pause-button button" onClick={() => this.pause()}>Pause</div>
             {/* <div id="interface" className={this.state.interfaceHidden ? "hidden" : ""}>
 
             </div>
@@ -68,6 +70,10 @@ export class Home extends React.Component<{}, IHomeState> {
 
     keyPress(e: KeyboardEvent) {
         Input.onKeyPress(e.key);
+    }
+
+    pause() {
+        game.paused = !game.paused;
     }
 
     // hideMenu() {

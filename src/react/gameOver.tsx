@@ -19,7 +19,7 @@ export class GameOver extends React.Component<{}, IGameOverState> {
     public render() {
         return <div className={"you-lose " + (this.state.hidden ? "hidden" : "")}>
             <h2>You Lose</h2>
-            <input className="restart-game-button" value="Restart Game" onClick={() => this.restartGame()} />
+            <div className="restart-game-button button" onClick={() => this.restartGame()}>Restart Game</div>
         </div>;
     }
 

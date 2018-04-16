@@ -4,8 +4,8 @@ import Ui from "../ui/_userInterface";
 import game from "../core/gameEngine";
 
 class Shields {
-    left: number = 50;
-    right: number = 50;
+    left: number = 0;
+    right: number = 0;
 }
 
 export default class Player extends Entity {
@@ -15,6 +15,9 @@ export default class Player extends Entity {
     
     constructor(id: number, model: THREE.Object3D, position: THREE.Vector3, health: number) {
         super(id, model, position, health);
+
+        model.scale.set(6, 6, 6);
+		model.rotation.y = Math.PI;
 
         Ui.PlayerHealth.updateHealth(this.maxHealth, this.health);
         Ui.ShieldEnergy.updateEnergy(this.shields.left, this.shields.right);
@@ -26,14 +29,13 @@ export default class Player extends Entity {
         if (shields <= 0) {
             this.takeDamage(side);
         } else {
-            this.shields[side] = Math.max(0, this.shields[side] - 2);
-            Ui.ShieldEnergy.updateEnergy(this.shields.left, this.shields.right);
+            // this.shields[side] = Math.max(0, this.shields[side] - 2);
+            // Ui.ShieldEnergy.updateEnergy(this.shields.left, this.shields.right);
         }
     }
 
     takeDamage(side: string) {
-        //this.health -= 2;
-        this.health -= 10;
+        this.health -= 2;
 
         Ui.PlayerHealth.updateHealth(this.maxHealth, this.health);
 
@@ -43,18 +45,18 @@ export default class Player extends Entity {
     }
 
     fireGun() {
-
+        game.createRocket(this.model.position);
     }
 
     increaseShield(side: string) {
-        this.shields[side] += 15;
+        this.shields[side] += 20;
 
         Ui.ShieldEnergy.updateEnergy(this.shields.left, this.shields.right);
     }
 
     update(dt: number) {
-        this.shields.left = Math.max(0, this.shields.left - .06);
-        this.shields.right = Math.max(0, this.shields.right - .06);
+        this.shields.left = Math.max(0, this.shields.left - .1);
+        this.shields.right = Math.max(0, this.shields.right - .1);
 
         Ui.ShieldEnergy.updateEnergy(this.shields.left, this.shields.right);
     }
