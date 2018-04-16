@@ -81,6 +81,11 @@ class GameEngine {
 		Ui.GameOver.show();
 	}
 
+	winning() {
+		this.paused = true;
+		Ui.GameWon.show();
+	}
+
 	onKeyPress(key: string) {
 		if (!this.selectedWord) {
 			this.selectWord(key);

@@ -16,9 +16,13 @@ export default class Enemy extends Entity {
     }
 
     rocketHit() {
-        this.health -= 3;
+        this.health -= 10;
 
         Ui.EnemyHealth.updateHealth(this.maxHealth, this.health);
+
+        if (this.health <= 10) {
+            game.winning();
+        }
     }
 
     update(dt: number) {

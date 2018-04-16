@@ -5,6 +5,7 @@ import { PlayerHealthBar } from "../../react/playerHealthbar";
 import { EnemyHealthBar } from "../../react/enemyHealthBar";
 import { ShieldEnergyBar } from "../../react/shieldEnergyBar";
 import { GameOver } from "../../react/gameover";
+import { GameWon } from "../../react/gameWin";
 
 interface ErrorHandler {
     type: number;
@@ -20,6 +21,7 @@ export default class Ui {
     static EnemyHealth: EnemyHealthBar;
     static ShieldEnergy: ShieldEnergyBar;
     static GameOver: GameOver;
+    static GameWon: GameWon;
     // static Login: Login;
 
     static initiate() {

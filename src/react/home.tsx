@@ -12,6 +12,7 @@ import { PlayerHealthBar } from './playerHealthbar';
 import { EnemyHealthBar } from './enemyHealthBar';
 import { ShieldEnergyBar } from './shieldEnergyBar';
 import { GameOver } from './gameover';
+import { GameWon } from './gameWin';
 
 window["adminMap"] = null;
 window["game"] = game;
@@ -44,6 +45,7 @@ export class Home extends React.Component<{}, IHomeState> {
             <PlayerHealthBar/>
             <ShieldEnergyBar/>
             <GameOver/>
+            <GameWon/>
 
             <div className="pause-button button" onClick={() => this.pause()}>Pause</div>
             {/* <div id="interface" className={this.state.interfaceHidden ? "hidden" : ""}>
