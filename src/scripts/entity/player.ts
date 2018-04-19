@@ -29,13 +29,13 @@ export default class Player extends Entity {
         if (shields <= 0) {
             this.takeDamage(side);
         } else {
-            // this.shields[side] = Math.max(0, this.shields[side] - 2);
+            this.shields[side] = Math.max(0, this.shields[side] - 5);
             // Ui.ShieldEnergy.updateEnergy(this.shields.left, this.shields.right);
         }
     }
 
     takeDamage(side: string) {
-        this.health -= 2;
+        this.health -= 5;
 
         Ui.PlayerHealth.updateHealth(this.maxHealth, this.health);
 
@@ -49,14 +49,14 @@ export default class Player extends Entity {
     }
 
     increaseShield(side: string) {
-        this.shields[side] += 20;
+        this.shields[side] += 35;
 
         Ui.ShieldEnergy.updateEnergy(this.shields.left, this.shields.right);
     }
 
     update(dt: number) {
-        this.shields.left = Math.max(0, this.shields.left - .1);
-        this.shields.right = Math.max(0, this.shields.right - .1);
+        this.shields.left = Math.max(0, this.shields.left - .05);
+        this.shields.right = Math.max(0, this.shields.right - .05);
 
         Ui.ShieldEnergy.updateEnergy(this.shields.left, this.shields.right);
     }

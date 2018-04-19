@@ -16,7 +16,7 @@ export default class Enemy extends Entity {
     }
 
     rocketHit() {
-        this.health -= 10;
+        this.health -= 5;
 
         Ui.EnemyHealth.updateHealth(this.maxHealth, this.health);
 

@@ -152,18 +152,24 @@ class GameEngine {
 		let otherStartingLetters = this.allWords.reduce((a, b) => a.concat(b.getStartingLetters()), []).filter(x => x != currentLetter);
 		let isValidWord = true;
 		let randomWord = "";
+		let repititions = 0;
 
 		do {
+			repititions++;
+			if (repititions > 200) {
+				this.completedWords = [];
+			}
+
 			randomWord = this.getRandomWord();
-			// console.log(`Got random word: ${randomWord} with other starting letters: ${otherStartingLetters}`);
 			let isWordUsed = this.completedWords.some(x => x == randomWord);
 			isValidWord = !isWordUsed && !otherStartingLetters.some(x => x == randomWord[0]);
-			// if (!isValidWord) {
-			// 	console.log(`Word is not valid!`);
-			// }
+			if (randomWord.length != 5) {
+				isValidWord = false;
+			}
 		}
 		while (!isValidWord);
 
+		console.log(repititions);
 		return randomWord;
 	}
 
